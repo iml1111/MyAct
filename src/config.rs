@@ -19,14 +19,14 @@ impl AppConfig {
         dotenv::from_filename(filename).ok();
 
         let app_name: String = env::var("APP_NAME")
-            .unwrap_or("IMActor".to_string());
+            .unwrap_or("MyAct".to_string());
 
         let worker_num: String = env::var("WORKER_NUM")
             .unwrap_or("1".to_string());
         let worker_num: usize = worker_num.parse().unwrap();
         
         let contact_url: String = env::var("CONTACT_URL")
-            .unwrap_or("github.com/iml1111".to_string());
+            .unwrap_or("https://github.com/iml1111".to_string());
 
         let slow_api_time: String = env::var("SLOW_API_TIME")
             .unwrap_or("0.5".to_string());

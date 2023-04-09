@@ -36,6 +36,11 @@ pub async fn bad_request() -> impl Responder {
     json_response::bad_request(Some("Something Bad!".to_string()))
 }
 
+#[get("/error/not_found")]
+pub async fn not_found() -> impl Responder {
+    json_response::not_found(Some("Something Not Found!".to_string()))
+}
+
 #[get("/error/forbidden")]
 pub async fn forbidden() -> impl Responder {
     json_response::forbidden(Some("Something Forbidden!".to_string()))

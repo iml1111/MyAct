@@ -7,5 +7,6 @@ pub fn init(cfg: &mut web::ServiceConfig) {
         .service(sample::create_champion)
         .service(sample::calc_add)
         .service(sample::bad_request)
+        .service(sample::not_found)
         .service(sample::forbidden);
 }

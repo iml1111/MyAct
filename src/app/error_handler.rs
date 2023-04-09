@@ -11,29 +11,25 @@ use super::response;
 
 pub fn init<B: MessageBody + 'static>(error_handlers: ErrorHandlers<B>) -> ErrorHandlers<B> {
     error_handlers
-        .handler(StatusCode::NOT_FOUND, not_found)
+        .handler(StatusCode::BAD_REQUEST, bad_request)
         .handler(StatusCode::METHOD_NOT_ALLOWED, method_not_allowed)
         .handler(StatusCode::INTERNAL_SERVER_ERROR, internal_server_error)
 }
 
-pub fn not_found<B: MessageBody + 'static>(
-    res: ServiceResponse<B>
-) -> Result<ErrorHandlerResponse<B>> {
-    log::error!("404 Error Hooked!");
-    get_default_error_response(res, "not_found".to_string())
+pub fn bad_request<B>(res: ServiceResponse<B>) -> Result<ErrorHandlerResponse<B>> {
+    log::error!("bad_request hooked!");
+    Ok(ErrorHandlerResponse::Response(res.map_into_left_body()))
 }
 
 pub fn method_not_allowed<B: MessageBody + 'static>(
     res: ServiceResponse<B>
 ) -> Result<ErrorHandlerResponse<B>> {
-    log::error!("405 Error Hooked!");
     get_default_error_response(res, "method_not_found".to_string())
 }
 
 pub fn internal_server_error<B: MessageBody + 'static>(
     res: ServiceResponse<B>
 ) -> Result<ErrorHandlerResponse<B>> {
-    log::error!("500 Error Hooked!");
     get_default_error_response(res, "internal_server_error".to_string())
 }
 

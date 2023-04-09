@@ -50,6 +50,17 @@ pub mod json_response {
             .body(res)
     }
 
+    pub fn not_found(detail: Option<String>) -> HttpResponse {
+        let res = GenernalError {
+            msg: "not_found".to_string(),
+            detail
+        };
+        let res = serde_json::to_string(&res).unwrap();
+        HttpResponse::NotFound()
+            .content_type(ContentType::json())
+            .body(res)
+    }
+
     pub fn forbidden(detail: Option<String>) -> HttpResponse {
         let res = GenernalError {
             msg: "forbidden".to_string(),
