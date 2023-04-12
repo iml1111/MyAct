@@ -40,6 +40,13 @@ cargo run
 [2023-04-09T12:44:21Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
 [2023-04-09T12:44:21Z INFO  myact] Constructing the App:MyAct
 ```
+
+### Docker Build
+```shell
+$ docker build -t myact .
+$ docker run -name myact -p 8080:8080 myact
+```
+
 ![image](https://user-images.githubusercontent.com/29897277/230773250-7d5819ef-12a3-4de1-9bd3-301032dfdc19.png)
 
 
